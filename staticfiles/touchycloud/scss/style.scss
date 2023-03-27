@@ -1,5 +1,5 @@
-@charset "UTF-8";
 /* Élément | GENERALE */
+
 body {
   display: flex;
   flex-direction: column;
@@ -9,14 +9,9 @@ body {
   background: cadetblue;
 }
 
-.home-box {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin: auto;
-}
 
 /* Élément | TITRE HOME */
+
 .title-home {
   text-align: center;
   margin: 30px auto;
@@ -25,12 +20,4 @@ body {
   font-size: 5em;
 }
 
-.img-home-box {
-  display: flex;
-  justify-content: center;
-  width: 33%;
-}
 
-.photos-home {
-  width: 50%;
-}

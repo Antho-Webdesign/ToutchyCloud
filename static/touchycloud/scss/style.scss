@@ -1,0 +1,36 @@
+/* Élément | GENERALE */
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: cadetblue;
+}
+
+.home-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: auto;
+}
+/* Élément | TITRE HOME */
+
+.title-home {
+  text-align: center;
+  margin: 30px auto;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 5em;
+}
+
+.img-home-box {
+  display: flex;
+  justify-content: center;
+  width: 33%;
+}
+
+.photos-home {
+  width: 50%;
+}
