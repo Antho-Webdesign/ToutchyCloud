@@ -31,12 +31,11 @@ body {
     border-radius: 40px;
   }
 }
-
 /* Élément | TITRE HOME */
 .title-home {
   text-align: center;
   margin: 30px auto;
-  font-family: 'Shadows Into Light', cursive;
+  font-family: "Shadows Into Light", cursive;
   font-weight: bold;
   font-size: 5em;
 }
@@ -79,3 +78,5 @@ body {
 .retour {
   width: 20%;
 }
+
+/*# sourceMappingURL=style.css.map */

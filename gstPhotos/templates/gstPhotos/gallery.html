@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% block subtitle %}<h2 class="text-center">Gallery</h2>{% endblock %}
+
+    {% for img in photos %}
+        <img class="img-preview" src="{{ img.images.url }}" alt="">
+    {% endfor %}
+
+    <div class="retour-englobe">
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+    </div>
+{% endblock %}
