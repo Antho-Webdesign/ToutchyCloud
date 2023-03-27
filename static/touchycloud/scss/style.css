@@ -68,6 +68,12 @@ body {
   width: 10%;
 }
 
+.img-full {
+  width: 66%;
+  justify-content: center;
+  margin: auto;
+}
+
 .retour-englobe {
   display: flex;
   justify-content: center;
@@ -77,6 +83,16 @@ body {
 
 .retour {
   width: 20%;
+}
+
+/* Element | details-photo*/
+.details-box {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  margin: 40px auto;
+  flex-direction: column;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

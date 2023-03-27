@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="details-box">>
+    <h1>{{ photos.nom }}</h1>
+    <img class="img-full" src="{{ photos.images.url }}" alt="">
+    <p>{{ photos.description }}</p>
+    </div>
+
+        <div class="retour-englobe">
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+    </div>
+
+{% endblock %}
