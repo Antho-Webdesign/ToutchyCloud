@@ -7,11 +7,12 @@
 
     {% for img in object_list %}
         <a href="{% url 'img-details-view' img.slug %}">
-        <img class="img-preview" src="{{ img.images.url }}" alt="">
+            <img class="img-preview" src="{{ img.images.url }}" alt="">
         </a>
     {% endfor %}
 
     <div class="retour-englobe">
         <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
     </div>
+
 {% endblock %}

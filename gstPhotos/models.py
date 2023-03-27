@@ -22,9 +22,3 @@ class Photos(models.Model):
         ordering = ['-nom']
         verbose_name = 'Photo'
         verbose_name_plural = 'Photos'
-
-
-
-
-
-
