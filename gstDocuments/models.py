@@ -33,8 +33,8 @@ class Tags(models.Model):
 
 
 class Documents(models.Model):
-    nom = models.CharField(max_length=255)
-    description = models.TextField()
+    nom = models.CharField(max_length=255, null=True)
+    description = models.TextField(max_length=555, null=True)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_modification = models.DateTimeField(auto_now=True)
     slug = models.SlugField(unique=True, editable=False)
