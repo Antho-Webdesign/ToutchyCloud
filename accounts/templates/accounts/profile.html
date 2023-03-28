@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class="title-home">
+        Profil
+    </h1>
+    <div id="profil-page">
+        <div class="card" data-state="#about">
+            <div class="card-header">
+
+                <div class="card-cover"
+                     style="background-image: url(https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80)">
+                </div>
+
+                <img class="card-avatar" src="{{ user.profile.image_profile.url }}"
+                     alt="{{ profile.image_profile.name }}">
+
+
+                <h1 class="card-fullname">{{ profile.user.username }}</h1>
+
+                {% if profile.user.is_active %}
+                    <p class="text-success">Active</p>
+                {% else %}
+                    <p class="text-warning">Not active</p>
+
+                {% endif %}
+            </div>
+            <div class="card-main text-dark">
+                <div class="card-section is-active" id="about">
+
+                    <table class="table text-center">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Pseudo</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Prénom</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>{{ profile.user.username }}</td>
+                            <td>{{ profile.user.email }}</td>
+                            <td>{{ profile.user.last_name }}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <a class="btn updt-profile" href="{% url 'edit_profile' %}">
+                        <button class="btn updt-profile btn-info fs-5">Modifier mon profile</button>
+                    </a>
+
+
+                </div>
+
+                <div class="card-section" id="experience">
+                    <div class="card-content">
+                        <div class="card-subtitle">Modifier mon image</div>
+
+                        <form method="post" enctype="multipart/form-data" class="form-updt-img-profile">
+                            {% csrf_token %}
+                            <label class="form-lbl mb-5" for="image_profile"></label>
+                            <input type="file" name="image_profile" id="image_profile"
+                                   value="{{ profile.image_profile }}"
+                                   class="form-control mb-5 input-updt-img-profile"/>
+                            <input type="submit" value="Valider" class="btn updt-profile">
+                        </form>
+
+                    </div>
+                </div>
+                <div class="card-section" id="contact">
+                    <div class="card-content">
+                        <div class="card-subtitle">Infos g</div>
+                        <div class="card-contact-wrapper">
+                            <div class="card-contact">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                {{ profile.address }}  {{ profile.city }}  {{ profile.zip_code }}
+                            </div>
+                            <div class="card-contact">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                                </svg>
+                                {{ profile.phone }}
+                            </div>
+                            <div class="card-contact">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <path d="M22 6l-10 7L2 6"></path>
+                                </svg>
+                                {{ profile.user.email }}
+                            </div>
+                            <button class="contact-me">WORK TOGETHER</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-buttons">
+                    <button data-section="#about" class="is-active">INFOS</button>
+                    <button data-section="#experience">MODIFIER</button>
+                    <button data-section="#contact">CONTACT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll(".card-buttons button");
+        const sections = document.querySelectorAll(".card-section");
+        const card = document.querySelector(".card");
+
+        const handleButtonClick = (e) => {
+            const targetSection = e.target.getAttribute("data-section");
+            const section = document.querySelector(targetSection);
+            targetSection !== "#about"
+                ? card.classList.add("is-active")
+                : card.classList.remove("is-active");
+            card.setAttribute("data-state", targetSection);
+            sections.forEach((s) => s.classList.remove("is-active"));
+            buttons.forEach((b) => b.classList.remove("is-active"));
+            e.target.classList.add("is-active");
+            section.classList.add("is-active");
+        };
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", handleButtonClick);
+        });
+
+    </script>
+{% endblock %}
+
+{% comment %}
+<div class="container-profile mt-5 mb-5">
+    {% if user.is_authenticated %}
+    <div class="row no-gutters">
+        <img class="img-profile" src="{{ profile.image.url }}">
+
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-between align-items-center p-5 bg-dark text-white">
+                <h3 class="display-5">{{ user.username }}</h3>
+
+                <a class="nav-link" href="{% url 'cart' %}">
+                    <i href="{% url 'cart' %}" class="fa fa-2x fa-cart-plus"></i>
+                    <!-- <img src="media/images/panier.png" alt="" style="width:25%"> -->
+                    {{ user.cart.orders.count }}
+                </a>
+                <a href="{% url 'profile' %}">
+                    <i class="fa fa-2x fa-user"></i>
+                </a>
+                <a href="#" data-popup="Ajouter un compte paypal">
+                    <i class="fa fa-2x fa-paypal"></i>
+                </a>
+                <a href="#" data-popup="Ajouter une carte bancaire">
+                    <i class="fa fa-2x fa-cc-visa"></i>
+                </a>
+
+            </div>
+
+            <div class="p-3 bg-black text-white">
+                <h6>Inscrit depuis le : {{ user.date_joined|date:"d/m/Y" }}</h6>
+            </div>
+
+            <div class="d-flex flex-row text-white box-prfl mt-5">
+                <div class="p-4 bg-primary text-center skill-block">
+                    <h6><i class="fas fa-2x fa-address-book"></i></h6>
+                    <br>
+                    <h4>{{ profile.address }}</h4>
+                </div>
+                <div class="p-3 bg-success text-center skill-block">
+                    <h6><i class="fas fa-2x fa-city"></i></h6>
+                    <br>
+                    <h4>{{ profile.city }}</h4>
+                </div>
+                <div class="p-3 bg-warning text-center skill-block">
+                    <h6><i class="fas fa-2x fa-phone"></i></h6>
+                    <br>
+                    <h4>{{ profile.phone }}</h4>
+                </div>
+                <div class="p-3 bg-danger text-center skill-block">
+                    <h6><i class="fas fa-2x fa-globe"></i></h6>
+                    <br>
+                    <h4>{{ profile.country }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="btn-box">
+        <a href="{% url 'edit-profile' %}">
+            <button class="btn updt-profile btn-info fs-5">Modifier mon profile</button>
+        </a>
+    </div>
+</div>
+
+<div class="title text-center mb-5">
+    <h1>Mes infos</h1>
+</div>
+{% if user.is_authenticated %}
+<div class="profile text-center">
+    <img src="{{ profile.image.url }}" alt="img" style="width: 25%; border-radius:100px;" class="mb-4 ">
+    <div class="mb-4">
+        <h2>Username: {{ user.username }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>Email: {{ user.email }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>First Name: {{ user.first_name }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>Last Name: {{ user.last_name }}</h2>
+    </div>
+    <div class="mb-2">
+        <h2>Address: {{ user.profile.address }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>Phone Number: {{ user.profile.phone_number }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>City: {{ user.profile.city }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>Zip Code: {{ user.profile.zip_code }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2>Country: {{ user.profile.country }}</h2>
+    </div>
+    <div class="mb-4">
+        <h2 class="mb-2">State: {{ user.profile.state }}</h2>
+    </div>
+</div>
+{% endif %}
+<a href="{% url 'edit-profile' %}" class="btn btn-primary">Update</a>
+{% endcomment %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -9,17 +10,20 @@ class Customer(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='Profiles/', default='profiles/default.png', blank=True, null=True)
+    image_profile = models.ImageField(upload_to='profiles/', default='profiles/default.png', blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
     zip_code = models.CharField(max_length=10, blank=True)
     state = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.user.username
 
     class Meta:
-        verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
         ordering = ('user',)
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'pk': self.pk})
