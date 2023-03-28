@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_sass_compiler',
     'gstPhotos',
+    'gstDocuments',
 ]
 
 MIDDLEWARE = [

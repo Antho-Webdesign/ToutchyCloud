@@ -29,6 +29,7 @@
       <list>
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/gstPhotos/templates" />
+        <option value="$MODULE_DIR$/gstDocuments/templates" />
       </list>
     </option>
   </component>
