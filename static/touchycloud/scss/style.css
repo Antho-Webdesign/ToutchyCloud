@@ -439,9 +439,11 @@ ACCOUNTS
 }
 
 /* Élément | http://127.0.0.1:8000/profile/edit/ */
-.btn-englobe {
+.btn-box {
   display: flex;
+  width: 28%;
   justify-content: space-between;
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

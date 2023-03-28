@@ -50,11 +50,6 @@
                         </tbody>
                     </table>
 
-                    <a class="btn updt-profile" href="{% url 'edit_profile' %}">
-                        <button class="btn updt-profile btn-info fs-5">Modifier mon profile</button>
-                    </a>
-
-
                 </div>
 
                 <div class="card-section" id="experience">
@@ -115,10 +110,13 @@
         </div>
     </div>
 
+    <div class="btn-box mb-5">
+        <button type="submit" class="btn btn-primary mt-3">Modifier</button>
 
-    <div class="retour-englobe mt-5 mb-5">
-        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+        <a class="btn btn-warning mt-3" href="{% url 'home' %}">Retour</a>
     </div>
+
+
 
 
     <script>
