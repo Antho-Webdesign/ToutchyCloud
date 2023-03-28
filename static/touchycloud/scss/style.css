@@ -438,4 +438,10 @@ ACCOUNTS
   width: 100%;
 }
 
+/* Élément | http://127.0.0.1:8000/profile/edit/ */
+.btn-englobe {
+  display: flex;
+  justify-content: space-between;
+}
+
 /*# sourceMappingURL=style.css.map */
