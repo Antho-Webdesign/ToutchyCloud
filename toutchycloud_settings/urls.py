@@ -11,4 +11,8 @@ urlpatterns = [
     path('', include('gstPhotos.urls')),
     path('', include('gstDocuments.urls')),
     path('', include('accounts.urls')),
+    path('', include('gstRappels.urls')),
+    path('', include('gstTasks.urls')),
+    path('', include('gstContact.urls')),
+    path('', include('gstPasswords.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

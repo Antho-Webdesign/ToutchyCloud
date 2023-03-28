@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'gstPhotos',
     'gstDocuments',
     'accounts',
+    'gstPasswords',
+    'gstContact',
+    'gstTasks',
+    'gstRappels',
 ]
 
 MIDDLEWARE = [
