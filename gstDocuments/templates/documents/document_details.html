@@ -5,18 +5,19 @@
     <div class="details-box">
         <h1>{{ documents.nom }}</h1>
         <a href="{{ documents.file_upload.url }}">
-            <img style="width: 66%;" src="{{ documents.preview.small_preview.url }}" alt="{{ documents.nom }}">
+            <img style="width: 66%;" src="{{ documents.pr }}" alt="{{ documents.nom }}">
         </a>
-
-        <p>{{ documents.tag }}</p>
-        <small>
-            Créé le: {{ documents.date_creation|date:"d/m/Y" }} |
-            Modifié le: {{ documents.date_modification|date:"d/m/Y" }}
-        </small>
+    {{ object.file_upload.readinto.fget }}
+        <a href="{{ documents.preview.pk }}" target="_blank">PDF Preview</a>
+        <p>Keywords:
+            {% for mot in documents.mots_cles.all %}
+                {{ mot.mot }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        {% if documents.small_preview %}
+            <img src="{{ documents.file_upload.url }}" alt="Preview Image">
+        {% endif %}
+        <a href="{{ documents.file_upload.url }}" download>Download File</a>
     </div>
-
-    <div class="retour-englobe">
-        <a class="retour btn btn-warning" href="{% url 'gallery-doc-view' %}">Retour</a>
-    </div>
-
 {% endblock %}
