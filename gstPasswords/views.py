@@ -36,3 +36,33 @@ def home_passwords(request):
             }
             return render(request, 'generator/home_passwords.html', context)
 
+
+# function listall
+def listall(request):
+    passwords = GenPass.objects.filter(user=request.user)
+    context = {
+        'passwords': passwords
+    }
+    return render(request, 'generator/listall.html', context)
+
+
+"""
+
+def search(request):
+    if request.method == "POST":
+        if query := request.POST.get('site', None):
+            results = GenPass.objects.filter(site__contains=query, user=request.user)
+            return render(request, 'generator/search.html', {'results': results})
+    return render(request, 'generator/search.html')
+
+
+def deleterecord(request, id):
+    obj = get_object_or_404(GenPass, id=id)
+    obj.delete()
+    return redirect('listall')
+
+
+def home_test(request):
+    return render(request, 'generator/home-test.html')
+
+"""
