@@ -1,4 +1,9 @@
+import random
+
 from django.shortcuts import render
+
+from gstPasswords.models import GenPass
+
 
 # Create your views here.
 def home_passwords(request):
@@ -30,3 +35,4 @@ def home_passwords(request):
                 'password': passwd
             }
             return render(request, 'generator/home_passwords.html', context)
+
