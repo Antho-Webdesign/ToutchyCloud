@@ -31,6 +31,7 @@
         <option value="$MODULE_DIR$/gstPhotos/templates" />
         <option value="$MODULE_DIR$/gstDocuments/templates" />
         <option value="$MODULE_DIR$/accounts/templates" />
+        <option value="$MODULE_DIR$/gstPasswords/templates" />
       </list>
     </option>
   </component>
