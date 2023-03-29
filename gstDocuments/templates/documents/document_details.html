@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="details-box">>
+    <div class="details-box">
         <h1>{{ documents.nom }}</h1>
         <a href="{{ documents.file_upload.url }}">
             <img style="width: 66%;" src="{{ documents.preview.small_preview.url }}" alt="{{ documents.nom }}">
