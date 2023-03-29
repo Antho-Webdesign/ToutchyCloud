@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="details-box">>
+        <h1>{{ documents.nom }}</h1>
+        <a href="{{ documents.file_upload.url }}">
+            <img style="width: 66%;" src="{{ documents.preview.small_preview.url }}" alt="{{ documents.nom }}">
+        </a>
+
+        <p>{{ documents.tag }}</p>
+        <small>
+            Créé le: {{ documents.date_creation|date:"d/m/Y" }} |
+            Modifié le: {{ documents.date_modification|date:"d/m/Y" }}
+        </small>
+    </div>
+
+    <div class="retour-englobe">
+        <a class="retour btn btn-warning" href="{% url 'gallery-doc-view' %}">Retour</a>
+    </div>
+
+{% endblock %}
