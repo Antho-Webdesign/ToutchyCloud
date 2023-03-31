@@ -4,7 +4,7 @@
 {% block content %}
 
     <div class="home-box mt-4">
-        {% for doc in documents %}
+        {% for doc in documents_list %}
             <div class="img-home-box border border-dark p-3">
 
                 <a class="nav-link" href="{% url 'details-doc' doc.slug %}">
