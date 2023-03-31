@@ -7,7 +7,7 @@
         {% for doc in documents %}
             <div class="img-home-box border border-dark p-3">
 
-                <a href="{% url 'details-doc' doc.slug %}">
+                <a class="nav-link" href="{% url 'details-doc' doc.slug %}">
                     <h2>{{ doc.nom }}</h2>
                     <img class="photos-home" src="{{ doc.preview.small_preview.url }}" alt="{{ doc.mots_cles }}"/>
                 </a>
