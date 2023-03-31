@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="details-box">
+
+        <h1>Edit Document "{{ object.nom }}"</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="retour btn btn-success mt-4" type="submit">Save</button>
+        </form>
+
+    </div>
+{% endblock %}

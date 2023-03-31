@@ -20,8 +20,11 @@
         {% endif %}
         <a href="{{ documents.file_upload.url }}" download>Download File</a>
     </div>
+
     <div class="retour-englobe">
         <a class="retour btn btn-warning" href="{% url 'gallery-doc-view' %}">Retour</a>
+        <a class="retour btn btn-primary" href="{% url 'document_edit' object.pk %}">Modifier</a>
+        <a class="retour btn btn-danger" href="{% url 'document_delete' object.pk %}">Supprimer</a>
     </div>
 
 {% endblock %}
