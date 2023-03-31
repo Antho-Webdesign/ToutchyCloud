@@ -2,7 +2,13 @@
 {% load static %}
 
 {% block content %}
-
+    <section class="home-box justify-content-center mt-2 mb-2">
+    <form method="post">
+        {% csrf_token %}
+        <input class="form" name="search" id="search" value="rechercher">
+        <button class="btn btn-success" type="submit" name="search">Rechercher</button>
+    </form>
+    </section>
     <div class="home-box mt-4">
 
         <div class="img-home-box">
