@@ -7,3 +7,4 @@ admin.site.register(Documents)
 admin.site.register(MotsCles)
 
 admin.site.register(Tags)
+

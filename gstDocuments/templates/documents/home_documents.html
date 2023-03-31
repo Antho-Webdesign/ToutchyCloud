@@ -6,8 +6,12 @@
     <div class="home-box mt-4">
         {% for doc in documents %}
             <div class="img-home-box border border-dark p-3">
-                <h2>{{ doc.nom }}</h2>
-                <img class="photos-home" src="{{ doc.preview.small_preview.url }}" alt="{{ doc.mots_cles }}"/>
+
+                <a href="{% url 'details-doc' doc.slug %}">
+                    <h2>{{ doc.nom }}</h2>
+                    <img class="photos-home" src="{{ doc.preview.small_preview.url }}" alt="{{ doc.mots_cles }}"/>
+                </a>
+
             </div>
         {% endfor %}
     </div>
