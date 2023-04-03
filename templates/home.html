@@ -2,15 +2,20 @@
 {% load static %}
 
 {% block content %}
+
+    <!-- barre de recherche -->
     <section class="home-box justify-content-center mt-2 mb-2">
-    <form method="post">
-        {% csrf_token %}
-        <input class="form" name="search" id="search" value="rechercher">
-        <button class="btn btn-success" type="submit" name="search">Rechercher</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="search"></label>
+            <input class="form" name="search" id="search" placeholder="rechercher">
+            <button class="btn btn-success" type="submit" name="search">Rechercher</button>
+        </form>
     </section>
+
     <div class="home-box mt-4">
 
+        <!-- GstPhotos -->
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'gallery-view' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/photos-app.png' %}" alt="">
@@ -18,7 +23,7 @@
             </a>
         </div>
 
-
+        <!-- gstDocuments -->
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'gallery-doc-view' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/doc-app.png' %}" alt="">
@@ -26,6 +31,7 @@
             </a>
         </div>
 
+        <!-- gstContact -->
         <div class="img-home-box">
             <a class="nav-link" href="#">
                 <img class="photos-home" src="{% static 'touchycloud/home/contact-app.png' %}" alt="">
@@ -33,6 +39,7 @@
             </a>
         </div>
 
+        <!-- gstRdv -->
         <div class="img-home-box">
             <a class="nav-link" href="#">
                 <img class="photos-home" src="{% static 'touchycloud/home/rdv-app.png' %}" alt="rdv">
@@ -40,6 +47,7 @@
             </a>
         </div>
 
+        <!-- gstNotes -->
         <div class="img-home-box">
             <a class="nav-link" href="#">
                 <img class="photos-home" src="{% static 'touchycloud/home/notes-app.png' %}" alt="notes">
@@ -47,6 +55,7 @@
             </a>
         </div>
 
+        <!-- gstTasks -->
         <div class="img-home-box">
             <a class="nav-link" href="#">
                 <img class="photos-home" src="{% static 'touchycloud/home/tasks-app.png' %}" alt="tasks">
@@ -54,6 +63,7 @@
             </a>
         </div>
 
+        <!-- gstPasswords -->
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'home_passwords' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/passwords-app.png' %}" alt="password">
@@ -61,6 +71,7 @@
             </a>
         </div>
 
+        <!-- gstProfils -->
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'profile' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/settings-app.png' %}" alt="settings">
