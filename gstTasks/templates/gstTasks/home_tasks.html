@@ -189,14 +189,16 @@
 
 
         <!-- Formulaire d'ajout d'une tâche -->
-    <form class="form-task" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success" style="width: 33%; display: flex; justify-content: center; margin: auto;" type="submit">Ajouter</button>
-    </form>
+        <form class="form-task" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" style="width: 33%; display: flex; justify-content: center; margin: auto;"
+                    type="submit">Ajouter
+            </button>
+        </form>
 
-        </div>
-        {% comment %}
+    </div>
+    {% comment %}
 {% for task in tasks %}
     <div class="card">
         <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
