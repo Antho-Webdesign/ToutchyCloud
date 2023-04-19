@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+
+        .calendar {
+            /* display: flex; */
+            background: #fff;
+            width: 66%;
+            justify-content: center;
+            margin: auto;
+        }
+
+        tbody, td, tfoot, th, thead, tr {
+            border-width: 1px;
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="calendar">
+        {{ calendar }}
+    </div>
+
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+
+{% endblock %}
