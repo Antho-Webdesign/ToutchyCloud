@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- Formulaire d'ajout d'une tâche -->
+        <form class="form-task" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" style="width: 33%; display: flex; justify-content: center; margin: auto;"
+                    type="submit">Ajouter
+            </button>
+        </form>
+
+{% endblock %}

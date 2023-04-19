@@ -162,12 +162,14 @@
             <div class="card color_card">
                 <!-- Espace date -->
                 <div class="flex_sp_around mt-3 mb-5">
-                    <div class="flex">
-                        <small class="text_bold text-primary">Créé le: {{ task.created_at|date:"d/m/Y" }}</small>
+                    <div class="flex">Créé le :
+                        <br>
+                        <small class="text_bold text-primary"> {{ task.created_at|date:"d/m/Y" }}</small>
                     </div>
 
-                    <div class="flex">
-                        <small class="text_bold text-danger">Pour le: {{ task.due_date|date:"d/m/Y" }}</small>
+                    <div class="flex">Pour le :
+                        <br>
+                        <small class="text_bold text-danger"> {{ task.due_date|date:"d/m/Y" }}</small>
                     </div>
                 </div>
                 <!-- ! Espace date -->
@@ -180,22 +182,18 @@
                 <!-- ! Espace description -->
 
                 <div class="flex_sp_around mt-3 mb-3">
-                    <a class="text_bold btn btn-warning" href="{% url 'update' task.slug %}">Modifier</a>
-                    <a class="text_bold btn  btn-danger" href="{% url 'delete' task.id %}">Supprimer</a>
+                    <a style="border-radius: 10px" class="text_bold btn btn-success" href="#">Détails</a>
+                    <a style="border-radius: 10px" class="text_bold btn btn-warning"
+                       href="{% url 'update' task.slug %}">Modifier</a>
+                    <a style="border-radius: 10px" class="text_bold btn btn-danger" href="{% url 'delete' task.id %}">Supprimer</a>
                 </div>
 
             </div>
         {% endfor %}
-
-
-        <!-- Formulaire d'ajout d'une tâche -->
-        <form class="form-task" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-success" style="width: 33%; display: flex; justify-content: center; margin: auto;"
-                    type="submit">Ajouter
-            </button>
-        </form>
+        <div class="flex_sp_around mt-5 mb-3">
+            <a href="#" class="retour btn btn-success" style="border-radius: 20px">Ajouter</a>
+            <a href="{% url 'home' %}" class="retour btn btn-warning" style="border-radius: 20px">Retour</a>
+        </div>
 
     </div>
     {% comment %}
