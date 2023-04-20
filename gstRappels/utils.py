@@ -28,7 +28,7 @@ class Calendar(HTMLCalendar):
     def formatmonth(self, withyear=True):
         events = Rdv.objects.filter(start_time__year=self.year, start_time__month=self.month)
 
-        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
+        cal = f'<table border="0" cell-padding="0" cells pacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):
