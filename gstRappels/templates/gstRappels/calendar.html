@@ -1,75 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Calendrier des rendez-vous</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-        },
-        editable: false,
-        eventLimit: true, // allow "more" link when too many events
-        events: '{% url "appointments" %}',
-        eventRender: function(event, element) {
-          element.qtip({
-            content: event.description
-          });
-        }
-      });
-    });
-  </script>
-</head>
-<body>
-  <h1>Calendrier des rendez-vous</h1>
-  <div id='calendar'></div>
+{% extends 'base.html' %}
+{% load static %}
 
-<script>
-    $(document).ready(function() {
-  $('#calendar').fullCalendar({
-    // ...
-    eventDrop: function(event, delta, revertFunc) {
-      // ...
-    },
-    // ...
-  });
+{% block content %}
+    {% include 'gstRappels/inc/head.html' %}
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                events: '{% url "appointments" %}',
+                eventRender: function (event, element) {
+                    element.qtip({
+                        content: event.description
+                    });
+                }
+            });
+        });
+    </script>
 
-  // Code pour soumettre le formulaire d'ajout de rendez-vous
-  $('#addAppointmentForm').submit(function(event) {
-    event.preventDefault();
-    var formData = $(this).serialize();
-    $.ajax({
-      url: '{% url "add_appointment" %}',
-      type: 'POST',
-      data: formData,
-      success: function(response) {
-        if (response.success) {
-          alert('Rendez-vous ajouté avec succès.');
-          $('#calendar').fullCalendar('refetchEvents');
-        } else {
-          alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
-        }
-      },
-      error: function() {
-        alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
-      }
-    });
-  });
-});
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                // ...
+                eventDrop: function (event, delta, revertFunc) {
+                    // ...
+                },
+                // ...
+            });
 
-</script>
-<form id="addAppointmentForm">
-  <input type="text" name="title" placeholder="Titre">
-  <input type="text" name="start" placeholder="Date de début">
-  <input type="text" name="end" placeholder="Date de fin">
-  <button type="submit">Ajouter</button>
-</form>
+            // Code pour soumettre le formulaire d'ajout de rendez-vous
+            $('#addAppointmentForm').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: '{% url "add_appointment" %}',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Rendez-vous ajouté avec succès.');
+                            $('#calendar').fullCalendar('refetchEvents');
+                        } else {
+                            alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+                        }
+                    },
+                    error: function () {
+                        alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+                    }
+                });
+            });
+        });
+    </script>
 
-</body>
-</html>
+    <h1>Calendrier des rendez-vous</h1>
+    <div id='calendar'></div>
+    <div class="calendar"></div>
+
+    <form id="addAppointmentForm">
+        <input type="text" name="title" placeholder="Titre">
+        <input type="text" name="start" placeholder="Date de début">
+        <input type="text" name="end" placeholder="Date de fin">
+        <button type="submit">Ajouter</button>
+    </form>
+{% endblock %}

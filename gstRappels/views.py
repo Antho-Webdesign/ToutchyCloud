@@ -33,17 +33,17 @@ def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
-    return datetime.now()
+    return datetime
 
 
 def appointments(request):
     appointments = Appointment.objects.all()
     data = [
         {
-            'title': appointment.title,
-            'start': appointment.start_time.isoformat(),
-            'end': appointment.end_time.isoformat(),
-            'description': appointment.description,
+            'title': Appointment.title,
+            'start_time': appointment.start_time.isoformat(Appointment.start_time),
+            'end_time': appointment.end_time.isoformat(Appointment.end_time),
+            'description': appointment.description
         }
         for appointment in appointments
     ]
