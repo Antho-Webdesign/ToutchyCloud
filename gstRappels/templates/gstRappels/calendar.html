@@ -3,6 +3,7 @@
 
 {% block content %}
     {% include 'gstRappels/inc/head.html' %}
+
     <script>
         $(document).ready(function () {
             $('#calendar').fullCalendar({
@@ -57,14 +58,42 @@
         });
     </script>
 
-    <h1>Calendrier des rendez-vous</h1>
-    <div id='calendar'></div>
-    <div class="calendar"></div>
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                // ...
+                events: '{% url "appointments" %}',
+                // ...
+            });
+        });
+    </script>
 
-    <form id="addAppointmentForm">
+    <h1 class="mb-5 text-center">Calendrier des rendez-vous</h1>
+
+        <div id='calendar'>
+        </div>
+
+     <br>
+     <br>
+
+     {% for rdv in appointment %}
+          in appointment
+     {{ rdv.title }}
+     {{ rdv.start_time }}
+     {{ rdv.end_time }}
+    {% endfor %}
+
+    <form id="addAppointmentForm" class="mt-5 mb-5">
         <input type="text" name="title" placeholder="Titre">
         <input type="text" name="start" placeholder="Date de début">
         <input type="text" name="end" placeholder="Date de fin">
         <button type="submit">Ajouter</button>
     </form>
+
+
+    <div class="retour-englobe">
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+    </div>
+
+
 {% endblock %}
