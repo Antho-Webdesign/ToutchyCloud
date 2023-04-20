@@ -49,5 +49,8 @@ def appointments(request):
     return JsonResponse(data, safe=False)
 
 
+def calendar(request):
+    return render(request, 'gstRappels/calendar.html')
+
 def calendrier(request):
     return render(request, 'gstRappels/appointement.html')
