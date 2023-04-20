@@ -4,10 +4,10 @@
 {% block content %}
     <style>
 
-        .calendar {
+        .calendar-view {
             /* display: flex; */
-            background: #fff;
-            width: 66%;
+            background: #cbc9c9;
+            width: 75%;
             justify-content: center;
             margin: auto;
         }
@@ -17,12 +17,22 @@
             text-align: center;
         }
 
+        div.calendar-view {
+            padding: 100px;
+        }
+
+        .calendar {
+            width: 75%;
+            margin: auto;
+        }
+
     </style>
 
-    <div class="calendar">
+    <div class="calendar-view">
         {{ calendar }}
-    </div>
 
         <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+
+    </div>
 
 {% endblock %}
