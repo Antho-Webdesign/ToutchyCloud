@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block script %}
+  <script>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: false,
+        eventLimit: true, // allow "more" link when too many events
+        events: '{% url "appointments" %}',
+        eventRender: function(event, element) {
+          element.qtip({
+            content: event.description
+          });
+        }
+      });
+    });
+  </script>
+{% endblock script %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+{% include 'gstRappels/inc/head.html' %}
+  <h1>Calendrier des rendez-vous</h1>
+  <div id='calendar'></div>
+{% endblock %}

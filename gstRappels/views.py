@@ -1,8 +1,9 @@
 from datetime import datetime, date
+
+from django.http import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import generic
 from django.utils.safestring import mark_safe
+from django.views import generic
 
 from .models import *
 from .utils import Calendar
@@ -32,3 +33,21 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.now()
+
+
+def appointments(request):
+    appointments = Appointment.objects.all()
+    data = [
+        {
+            'title': appointment.title,
+            'start': appointment.start_time.isoformat(),
+            'end': appointment.end_time.isoformat(),
+            'description': appointment.description,
+        }
+        for appointment in appointments
+    ]
+    return JsonResponse(data, safe=False)
+
+
+def calendrier(request):
+    return render(request, 'gstRappels/appointement.html')
