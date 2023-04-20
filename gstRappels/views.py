@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
 from .utils import Calendar
@@ -52,5 +53,26 @@ def appointments(request):
 def calendar(request):
     return render(request, 'gstRappels/calendar.html')
 
+
 def calendrier(request):
     return render(request, 'gstRappels/appointement.html')
+
+
+@csrf_exempt
+def add_appointment(request):
+    if request.method != 'POST':
+        # renvoyez une réponse JSON pour indiquer que la méthode de requête n'est pas autorisée
+        return JsonResponse({'success': False, 'message': 'Méthode de requête non autorisée.'})
+    # récupérez les données de la requête POST
+    user = request.user
+    title = request.POST.get('title')
+    start_time = request.POST.get('start_time')
+    end_time = request.POST.get('end_time')
+    description = request.POST.get('description')
+    # créez un nouvel objet Appointment avec les données
+    appointment = Appointment(user=user, title=title, start_time=start_time, end_time=end_time, description=description)
+    # sauvegardez le rendez-vous dans la base de données
+    appointment.save()
+    # renvoyez une réponse JSON pour indiquer que le rendez-vous a été ajouté avec succès
+    return JsonResponse({'success': True})
+

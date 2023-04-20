@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.text import slugify
 
@@ -28,8 +30,8 @@ class Rdv(models.Model):
 
 class Appointment(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(default=datetime.date, null=True)
+    end_time = models.DateTimeField(null=True)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 

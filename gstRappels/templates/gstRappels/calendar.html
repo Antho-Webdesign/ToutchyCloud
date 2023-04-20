@@ -29,5 +29,47 @@
 <body>
   <h1>Calendrier des rendez-vous</h1>
   <div id='calendar'></div>
+
+<script>
+    $(document).ready(function() {
+  $('#calendar').fullCalendar({
+    // ...
+    eventDrop: function(event, delta, revertFunc) {
+      // ...
+    },
+    // ...
+  });
+
+  // Code pour soumettre le formulaire d'ajout de rendez-vous
+  $('#addAppointmentForm').submit(function(event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+      url: '{% url "add_appointment" %}',
+      type: 'POST',
+      data: formData,
+      success: function(response) {
+        if (response.success) {
+          alert('Rendez-vous ajouté avec succès.');
+          $('#calendar').fullCalendar('refetchEvents');
+        } else {
+          alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+        }
+      },
+      error: function() {
+        alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+      }
+    });
+  });
+});
+
+</script>
+<form id="addAppointmentForm">
+  <input type="text" name="title" placeholder="Titre">
+  <input type="text" name="start" placeholder="Date de début">
+  <input type="text" name="end" placeholder="Date de fin">
+  <button type="submit">Ajouter</button>
+</form>
+
 </body>
 </html>
