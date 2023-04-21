@@ -3,7 +3,40 @@
 {% load static %}
 
 {% block content %}
+    <style>
 
+        #addAppointmentForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        table {
+            width: 50%;
+            margin: 45px auto;
+        }
+
+        tbody, td, tfoot, th, thead, tr {
+
+            border-width: 1px;
+            text-align: center;
+        }
+
+    </style>
     {{ cal|safe }}
+<h3 class="text-center">Form</h3>
+    <div class="column">
+        <div class="col-md-8 offset-md-2">
+            <form id="addAppointmentForm" method="POST">
+                {% csrf_token %}
+                <input class="mb-5" type="text" name="title" placeholder="Titre">
+                <input class="mb-5" type="text" name="start_time" placeholder="Date de début">
+                <input class="mb-5" type="text" name="end_time" placeholder="Date de fin">
+                <input class="mb-5" type="text" name="location" placeholder="Locations">
+                <input class="mb-5" type="text" name="participants" placeholder="participants">
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
