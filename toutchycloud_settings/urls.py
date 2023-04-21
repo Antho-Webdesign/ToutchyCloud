@@ -11,7 +11,7 @@ urlpatterns = [
     path('', include('gstPhotos.urls')),
     path('', include('gstDocuments.urls')),
     path('', include('accounts.urls')),
-    path('', include('gstRappels.urls')),
+    path('', include('gstCalendar.urls')),
     path('', include('gstTasks.urls')),
     path('', include('gstContact.urls')),
     path('gestion-passwords/', include('gstPasswords.urls')),

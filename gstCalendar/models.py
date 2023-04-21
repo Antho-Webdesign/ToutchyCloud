@@ -1,12 +1,12 @@
-import datetime
-
 from django.db import models
 from django.utils.text import slugify
 
 from accounts.models import Customer
 
 
-class Rdv(models.Model):
+# Create your models here.
+
+class Event(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, editable=False)
@@ -14,27 +14,13 @@ class Rdv(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     location = models.CharField(max_length=100)
-    participants = models.ManyToManyField(Customer, related_name='appointments')
+    participants = models.ManyToManyField(Customer, related_name='events')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Rdv, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        ordering = ['start_time']
-
-
-class Appointment(models.Model):
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    start_time = models.DateTimeField(default=datetime.date, null=True)
-    end_time = models.DateTimeField(null=True)
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+        super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
