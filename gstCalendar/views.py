@@ -16,6 +16,8 @@ def home_calendar(request, year, month):
     month_number = month_number
 
     cal = HTMLCalendar().formatmonth(year, month_number)
+
+
     context = {
         'year': year,
         'month': month,

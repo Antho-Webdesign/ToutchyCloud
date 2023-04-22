@@ -35,6 +35,9 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'touchycloud/scss/style.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'fullcalendar/core/index.global.min.js' %}">
+
+     <link rel="stylesheet" type="text/css" href="{% static 'fullcalendar/daygrid/index.global.min.js' %}">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 
@@ -59,6 +62,10 @@
 
   {% block script %}
   {% endblock %}
+<script src="{% static 'fullcalendar/core/locales-all.global.js'  %}"></script>
+<script src="{% static 'fullcalendar/daygrid/index.global.js'  %}"></script>
+<script src="{% static 'touchycloud/js/script.js'  %}"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
