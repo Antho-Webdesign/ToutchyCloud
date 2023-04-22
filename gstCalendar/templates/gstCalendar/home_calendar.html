@@ -23,6 +23,46 @@
         }
 
     </style>
+
+    {% block script %}
+
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                // ...
+                eventDrop: function (event, delta, revertFunc) {
+                    // ...
+                },
+                // ...
+            });
+
+            // Code pour soumettre le formulaire d'ajout de rendez-vous
+            $('#addAppointmentForm').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: '{% url "add_event" %}',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Rendez-vous ajouté avec succès.');
+                            $('#calendar').fullCalendar('refetchEvents');
+                        } else {
+                            alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+                        }
+                    },
+                    error: function () {
+                        alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+                    }
+                });
+            });
+        });
+    </script>
+        {% endblock script %}
+
+           <div id='calendar'>
+        </div>
     {{ cal|safe }}
     <h3 class="text-center">Form</h3>
     <div class="column">
@@ -30,6 +70,8 @@
             <form id="addAppointmentForm" method="POST">
                 {% csrf_token %}
                 <input class="mb-5" type="text" name="title" placeholder="Titre">
+                <input class="mb-5" type="text" name="description" placeholder="Desc">
+
                 <input class="mb-5" type="text" name="start_time" placeholder="Date de début">
                 <input class="mb-5" type="text" name="end_time" placeholder="Date de fin">
                 <input class="mb-5" type="text" name="location" placeholder="Locations">
@@ -37,6 +79,11 @@
                 <button type="submit">Ajouter</button>
             </form>
         </div>
+    </div>
+
+
+    <div class="retour-englobe mt-5">
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
     </div>
 
 {% endblock %}

@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.text import slugify
 
@@ -11,9 +13,9 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, editable=False)
     description = models.TextField()
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    location = models.CharField(max_length=100)
+    start_time = models.DateTimeField(default=datetime.date, null=True)
+    end_time = models.DateTimeField(null=True)
+    location = models.CharField(max_length=100, null=True)
     participants = models.ManyToManyField(Customer, related_name='events')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
