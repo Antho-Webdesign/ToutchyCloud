@@ -20,6 +20,7 @@ window.onload = () => {
             week: 'semaine',
             list: 'Liste'
         },
+
         events: [
             {
                 title: 'All Day Event',
