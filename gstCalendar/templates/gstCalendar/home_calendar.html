@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% include '../static/touchycloud/js/script.js' %}
 {% load static %}
 
 {% block content %}
@@ -26,43 +26,64 @@
 
     {% block script %}
 
-    <script>
-        $(document).ready(function () {
-            $('#calendar').fullCalendar({
-                // ...
-                eventDrop: function (event, delta, revertFunc) {
-                    // ...
-                },
-                // ...
-            });
+        <script>
 
-            // Code pour soumettre le formulaire d'ajout de rendez-vous
-            $('#addAppointmentForm').submit(function (event) {
-                event.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    url: '{% url "add_event" %}',
-                    type: 'POST',
-                    data: formData,
-                    success: function (response) {
-                        if (response.success) {
-                            alert('Rendez-vous ajouté avec succès.');
-                            $('#calendar').fullCalendar('refetchEvents');
-                        } else {
+            $(document).ready(function () {
+                $('#calendar').fullCalendar({
+                    // ...
+                    eventDrop: function (event, delta, revertFunc) {
+                        // ...
+                    },
+                    // ...
+                });
+               let  evenements: [
+                    {% for event in events %}
+                        {
+                            title: "titre test -> {{ event.title }}",
+                            start: "{{ event.start_time }}",
+                            end: "{{ event.end_time }}",
+                            description: "{{ event.description }}",
+                        }
+                    {% endfor %}
+                ]
+            });
+                // Code pour soumettre le formulaire d'ajout de rendez-vous
+                $('#addAppointmentForm').submit(function (event) {
+                    event.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: '{% url "add_event" %}',
+                        type: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            if (response.success) {
+                                alert('Rendez-vous ajouté avec succès.');
+                                $('#calendar').fullCalendar('refetchEvents');
+                            } else {
+                                alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
+                            }
+                        },
+                        error: function () {
                             alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
                         }
-                    },
-                    error: function () {
-                        alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
-                    }
-                });
+                    });
             });
-        });
-    </script>
-        {% endblock script %}
+        </script>
+    {% endblock script %}
 
-           <div id='calendar'>
-        </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+
+    </script>
+
+
     {{ cal|safe }}
     <h3 class="text-center">Form</h3>
     <div class="column">
@@ -86,4 +107,33 @@
         <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
     </div>
 
+    <div id='calendar'>
+    </div>
+     {% block extrascript %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                header: {
+                    left: 'prev, next today',
+                    center: 'title',
+                    right: 'dayGridMonth, timeGridWeek, list',
+                },
+                evenements: [
+                    {% for event in events %}
+                        {
+                            title: "titre test -> {{ event.title }}",
+                            start: "{{ event.start_time }}",
+                            end: "{{ event.end_time }}",
+                            description: "{{ event.description }}",
+                        }
+                    {% endfor %}
+                ]
+            });
+            calendar.render();
+        });
+
+    </script>
+         {% endblock extrascript %}
 {% endblock %}
