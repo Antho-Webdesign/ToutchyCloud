@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% include '../static/touchycloud/js/script.js' %}
 {% load static %}
 
 {% block content %}
@@ -27,23 +26,16 @@
 
     <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                header: {
-                    left: 'prev, next, today',
-                    center: 'title',
-                    right: 'dayGridMonth, timeGridWeek, list',
-                },
-            });
-            calendar.render();
-        });
 
     </script>
 
 
+    <div id='calendrier'>
+    </div>
+
     {{ cal|safe }}
+
+
 
     <h3 class="text-center">Form</h3>
     <div class="column">
@@ -62,36 +54,53 @@
         </div>
     </div>
 
-    <div id='calendrier'>
-    </div>
     <div class="retour-englobe mt-5">
         <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
     </div>
 
     <div id='calendar'>
     </div>
+
     {% block extrascript %}
         <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    header: {
+                        left: 'prev, next, today',
+                        center: 'title',
+                        right: 'dayGridMonth, timeGridWeek, list',
+                    },
+                    header: {
+                        left: 'prev, next today',
+                        center: 'title',
+                        right: 'dayGridMonth, timeGridWeek, list',
+                    },
+                    buttonText: {
+                        today: 'Aujourd\'hui(calendar)',
+                        month: 'mois',
+                        week: 'semaine',
+                        list: 'Liste'
+                    },
+                });
+                calendar.render();
+            });
 
-            let evenements = [{
-                'title': 'live demo',
-                'start_time': '2023-04-26 09:00:00',
-                'end_time': '2023-04-26 19:00:00',
-                'description': 'blablavbla',
+
+            evenements = [{
+                title: 'live demo',
+                start_time: '2023-04-26 09:00:00',
+                end_time: '2023-04-26 19:00:00',
+                description: 'blablavbla',
             }]
 
             window.onload = () => {
-                let elementCalendrier = document.getElementById("calendrier")
+                let elementCalendrier = document.getElementById("calendar")
 
 
                 // instanciation du calendrier
-                let calendrier = new FullCalendar.Calendar(elementCalendrier, {
-                     evenements: [{
-                    title: 'live demo',
-                    start: '2023-04-26 09:00:00',
-                    end: '2023-04-26 19:00:00',
-                    description: 'blablavbla',
-                }],
+                let calendar = new FullCalendar.Calendar(elementCalendrier, {
                     // appel des composants
                     plugin: ['davGrid', 'timeGrid', 'list'],
                     defaultView: 'timeGridWeek',
@@ -103,14 +112,65 @@
                         right: 'dayGridMonth, timeGridWeek, list',
                     },
                     buttonText: {
-                        today: 'Aujourd\'hui',
+                        today: 'Aujourd\'hui(calendar)',
                         month: 'mois',
                         week: 'semaine',
                         list: 'Liste'
                     },
-                    events: evenements
+
+                    events: [
+                        {
+                            {% for event in events %}
+                                title: '{{ event.title }}',
+                                start: '{{ event.start_time }}',
+                                end: '{{ event.end_time }}',
+                            {% endfor %}
+                        },
+                        {
+                            title: 'Long Event',
+                            start: '2023-03-07',
+                            end: '2023-03-10'
+                        },
+                        {
+                            groupId: '999',
+                            title: 'Repeating Event',
+                            start: '2023-03-09T16:00:00'
+                        },
+                        {
+                            groupId: '999',
+                            title: 'Repeating Event',
+                            start: '2023-03-16T16:00:00'
+                        },
+                        {
+                            title: 'Conference',
+                            start: '2023-04-11',
+                            end: '2023-04-13'
+                        },
+                        {
+                            title: 'Meeting',
+                            start: '2023-04-12T10:30:00',
+                            end: '2023-04-12T12:30:00'
+                        },
+                        {
+                            title: 'Lunch',
+                            start: '2023-04-12T12:00:00'
+                        },
+                        {
+                            title: 'Meeting',
+                            start: '2023-04-12T14:30:00'
+                        },
+                        {
+                            title: 'Birthday Party',
+                            start: '2023-04-13T07:00:00'
+                        },
+                        {
+                            title: 'Click for Google',
+                            url: 'http://google.com/',
+                            start: '2023-04-28'
+                        }
+                    ],
                 })
-                calendrier.render()
+                calendar.render()
             }
 
         </script>
