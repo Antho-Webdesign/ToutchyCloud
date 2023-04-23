@@ -24,59 +24,18 @@
 
     </style>
 
-    {% block script %}
-
-        <script>
-
-            $(document).ready(function () {
-                $('#calendar').fullCalendar({
-                    // ...
-                    eventDrop: function (event, delta, revertFunc) {
-                        // ...
-                    },
-                    // ...
-                });
-               let  evenements: [
-                    {% for event in events %}
-                        {
-                            title: "titre test -> {{ event.title }}",
-                            start: "{{ event.start_time }}",
-                            end: "{{ event.end_time }}",
-                            description: "{{ event.description }}",
-                        }
-                    {% endfor %}
-                ]
-            });
-                // Code pour soumettre le formulaire d'ajout de rendez-vous
-                $('#addAppointmentForm').submit(function (event) {
-                    event.preventDefault();
-                    var formData = $(this).serialize();
-                    $.ajax({
-                        url: '{% url "add_event" %}',
-                        type: 'POST',
-                        data: formData,
-                        success: function (response) {
-                            if (response.success) {
-                                alert('Rendez-vous ajouté avec succès.');
-                                $('#calendar').fullCalendar('refetchEvents');
-                            } else {
-                                alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
-                            }
-                        },
-                        error: function () {
-                            alert('Une erreur est survenue lors de l\'ajout du rendez-vous.');
-                        }
-                    });
-            });
-        </script>
-    {% endblock script %}
 
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
+                initialView: 'dayGridMonth',
+                header: {
+                    left: 'prev, next, today',
+                    center: 'title',
+                    right: 'dayGridMonth, timeGridWeek, list',
+                },
             });
             calendar.render();
         });
@@ -85,6 +44,7 @@
 
 
     {{ cal|safe }}
+
     <h3 class="text-center">Form</h3>
     <div class="column">
         <div class="col-md-8 offset-md-2">
@@ -102,38 +62,57 @@
         </div>
     </div>
 
-
+    <div id='calendrier'>
+    </div>
     <div class="retour-englobe mt-5">
         <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
     </div>
 
     <div id='calendar'>
     </div>
-     {% block extrascript %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                header: {
-                    left: 'prev, next today',
-                    center: 'title',
-                    right: 'dayGridMonth, timeGridWeek, list',
-                },
-                evenements: [
-                    {% for event in events %}
-                        {
-                            title: "titre test -> {{ event.title }}",
-                            start: "{{ event.start_time }}",
-                            end: "{{ event.end_time }}",
-                            description: "{{ event.description }}",
-                        }
-                    {% endfor %}
-                ]
-            });
-            calendar.render();
-        });
+    {% block extrascript %}
+        <script>
 
-    </script>
-         {% endblock extrascript %}
+            let evenements = [{
+                'title': 'live demo',
+                'start_time': '2023-04-26 09:00:00',
+                'end_time': '2023-04-26 19:00:00',
+                'description': 'blablavbla',
+            }]
+
+            window.onload = () => {
+                let elementCalendrier = document.getElementById("calendrier")
+
+
+                // instanciation du calendrier
+                let calendrier = new FullCalendar.Calendar(elementCalendrier, {
+                     evenements: [{
+                    title: 'live demo',
+                    start: '2023-04-26 09:00:00',
+                    end: '2023-04-26 19:00:00',
+                    description: 'blablavbla',
+                }],
+                    // appel des composants
+                    plugin: ['davGrid', 'timeGrid', 'list'],
+                    defaultView: 'timeGridWeek',
+                    selectable: true,
+                    locale: 'fr',
+                    header: {
+                        left: 'prev, next today',
+                        center: 'title',
+                        right: 'dayGridMonth, timeGridWeek, list',
+                    },
+                    buttonText: {
+                        today: 'Aujourd\'hui',
+                        month: 'mois',
+                        week: 'semaine',
+                        list: 'Liste'
+                    },
+                    events: evenements
+                })
+                calendrier.render()
+            }
+
+        </script>
+    {% endblock extrascript %}
 {% endblock %}
