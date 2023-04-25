@@ -9,6 +9,29 @@ body {
   background: cadetblue;
 }
 
+.home-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1200px) {
+  .home-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+  .photos-home {
+    width: 75%;
+    border-radius: 40px;
+  }
+}
+
 /* Élément | TITRE HOME */
 .title-home {
   text-align: center;
@@ -16,4 +39,59 @@ body {
   font-family: 'Shadows Into Light', cursive;
   font-weight: bold;
   font-size: 5em;
+}
+
+.img-home-box {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  margin: 40px auto;
+  flex-direction: column;
+  text-align: center;
+}
+
+.photos-home {
+  width: 45%;
+  border-radius: 40px;
+  border: solid 1px #686868;
+  justify-content: center;
+  margin: auto;
+}
+
+.title-app {
+  margin: 15px auto;
+  color: darkred;
+  font-size: 1.2em;
+}
+
+/* Élément | GALLERY */
+.img-preview {
+  width: 10%;
+}
+
+.img-full {
+  width: 66%;
+  justify-content: center;
+  margin: auto;
+}
+
+.retour-englobe {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+.retour {
+  width: 20%;
+}
+
+/* Element | details-photo*/
+.details-box {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  margin: 40px auto;
+  flex-direction: column;
+  text-align: center;
 }

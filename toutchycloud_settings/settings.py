@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'gstContact',
     'gstTasks',
     'gstRappels',
+    'gstNotes',
 ]
 
 MIDDLEWARE = [
