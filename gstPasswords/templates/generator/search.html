@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    {% include 'generator/inc/navbar.html' %}
     <style>
 
         .homeform {
@@ -37,14 +38,15 @@
 
 
     </style>
-    <h1 class="text-center">Rechercher un mot de passe</h1>
+    <h1 class="text-center mt-5">Rechercher un mot de passe</h1>
+
     <div class="box-search">
         <form method="POST" class="form-search homeform">
             {% csrf_token %}
             <label class="labelclass" for="site">Pour le site :</label>
             <input class="inputclass" type="text" name="site" id="site">
 
-            <input type="submit" class="btn btn-success btn-rechercher" value="Rechercher">
+            <input type="submit" class="btn btn-success btn-rechercher mb-5" value="Rechercher">
         </form>
     </div>
 
@@ -55,7 +57,7 @@
                     <td class="border border-1 fs-2 p-5">Site</td>
                     <td class="border border-1 fs-2 p-5">Enregistrer le</td>
                     <td class="border border-1 fs-2 p-5">MDP généré</td>
-                    <td></td>
+                    <td class="colspan-2 fs-2 p-5 text-center"></td>
                     <td></td>
                 </tr>
 
@@ -77,4 +79,9 @@
             </table>
         </div>
     {% endfor %}
+
+     <div class="retour-englobe">
+        <a class="retour mt-5 mb-5 btn btn-warning" href="{% url 'home_passwords' %}">Retour</a>
+    </div>
+
 {% endblock %}
