@@ -1,6 +1,6 @@
 import random
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from gstPasswords.models import GenPass
 
@@ -44,6 +44,20 @@ def listall(request):
         'passwords': passwords
     }
     return render(request, 'generator/listall.html', context)
+
+
+def search(request):
+    if request.method == "POST":
+        if query := request.POST.get('site', None):
+            results = GenPass.objects.filter(site__contains=query, user=request.user)
+            return render(request, 'generator/search.html', {'results': results})
+    return render(request, 'generator/search.html')
+
+
+def deleterecord(request, id):
+    obj = get_object_or_404(GenPass, id=id)
+    obj.delete()
+    return redirect('listall')
 
 
 """
