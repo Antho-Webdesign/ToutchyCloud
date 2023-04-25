@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Supprimer la note "{{ note.titre }}"</h2>
+  <h2>Supprimer la note "{{ note.title }}"</h2>
   <p>Êtes-vous sûr(e) de vouloir supprimer cette note ?</p>
   <form method="post">
     {% csrf_token %}
