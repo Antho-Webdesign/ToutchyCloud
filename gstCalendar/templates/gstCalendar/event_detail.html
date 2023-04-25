@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ event.title }}</h1>
+  <p><strong>Date de début:</strong> {{ event.start }}</p>
+  <p><strong>Date de fin:</strong> {{ event.end }}</p>
+  <p><strong>Description:</strong> {{ event.description }}</p>
+  <a href="#">Modifier</a>
+  <a href="#">Supprimer</a>
+{% endblock %}
