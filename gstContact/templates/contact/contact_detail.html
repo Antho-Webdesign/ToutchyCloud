@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ contact.image_prfl.url }}" alt="{{ contact.nom }}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ contact.nom }} {{ contact.prenom }}</h1>
+            <ul class="list-unstyled">
+                <li><strong>Email :</strong> {{ contact.email }}</li>
+                <li><strong>Téléphone :</strong> {{ contact.telephone }}</li>
+                <li><strong>Adresse :</strong> {{ contact.adresse }}</li>
+                <li><strong>Ville :</strong> {{ contact.ville }}</li>
+                <li><strong>Pays :</strong> {{ contact.pays }}</li>
+                <li><strong>Date de naissance :</strong> {{ contact.date_de_naissance }}</li>
+                <li><strong>Notes :</strong> {{ contact.notes }}</li>
+                <li><strong>Date de création :</strong> {{ contact.date_de_creation }}</li>
+                <li><strong>Date de modification :</strong> {{ contact.date_de_modification }}</li>
+            </ul>
+            <a href="{% url 'contact_update' contact.slug %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'contact_delete' contact.slug %}" class="btn btn-danger">Supprimer</a>
+            <a href="{% url 'contact_list' %}" class="btn btn-warning">Retour</a>
+        </div>
+    </div>
+{% endblock %}

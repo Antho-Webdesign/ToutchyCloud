@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            padding: 10px 0;
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
+
+        .form-englobe {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            justify-content: center;
+            margin: auto;
+        }
+
+    </style>
+
+    <h1>{% if contact.id %}Modifier{% else %}Créer{% endif %} un contact</h1>
+
+    <div class="form-englobe">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% if contact.id %}Enregistrer{% else %}Créer{% endif %}</button>
+        </form>
+
+        <div class="retour-englobe">
+            <a class="retour btn btn-warning" href="{% url 'contact_list' %}">Retour</a>
+        </div>
+    </div>
+{% endblock %}

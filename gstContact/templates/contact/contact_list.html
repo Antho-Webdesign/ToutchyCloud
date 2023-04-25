@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Liste des contacts</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.nom }}</td>
+                <td>{{ contact.prenom }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.telephone }}</td>
+                <td>
+                    <a href="{% url 'contact_detail' slug=contact.slug %}" class="btn btn-primary">Détails</a>
+                    <a href="{% url 'contact_update' slug=contact.slug %}" class="btn btn-secondary">Modifier</a>
+                    <a href="{% url 'contact_delete' slug=contact.slug %}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Aucun contact à afficher.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="englobe">
+        <a class="ajouter btn btn-success" href="{% url 'contact_create' %}">Ajouter</a>
+        <a class="retour btn btn-warning" href="{% url 'home' %}">Retour</a>
+    </div>
+
+{% endblock %}

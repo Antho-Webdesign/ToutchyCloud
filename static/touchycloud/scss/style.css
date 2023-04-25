@@ -81,7 +81,18 @@ body {
   margin: auto;
 }
 
+.englobe {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+}
+
 .retour {
+  width: 20%;
+}
+
+.ajouter {
   width: 20%;
 }
 
