@@ -64,7 +64,10 @@
 
     </style>
 
-    <h1 class="text-center mt-3 mb-5">Modifier le contact "{{ contact.nom }}"</h1>
+    <h1 class="text-center mt-3 mb-5">Modifier le contact
+        <br>
+        <em class="text-primary fts-4"> {{ contact.nom }}</em>
+    </h1>
 
 
     <div class="form-englobe">
@@ -73,6 +76,9 @@
             {{ form.as_p }}
             <button type="submit">Enregistrer</button>
         </form>
+        <div class="retour-englobe mb-5">
+            <a class="retour btn btn-warning" href="{% url 'contact_list' %}">Retour</a>
+        </div>
     </div>
 
 {% endblock %}
