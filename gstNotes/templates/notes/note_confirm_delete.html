@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Supprimer la note "{{ note.title }}"</h2>
-  <p>Êtes-vous sûr(e) de vouloir supprimer cette note ?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Supprimer</button>
-    <a href="{% url 'note_detail' note.slug %}" class="btn btn-secondary">Annuler</a>
-  </form>
+    <h2>Supprimer la note "{{ note.title }}"</h2>
+    <p>Êtes-vous sûr(e) de vouloir supprimer cette note ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <a href="{% url 'note_detail' note.slug %}" class="btn btn-secondary">Annuler</a>
+    </form>
 {% endblock %}

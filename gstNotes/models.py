@@ -34,5 +34,3 @@ class Note(models.Model):
         ordering = ['-title']
         verbose_name = 'Note'
         verbose_name_plural = 'Notes'
-
-
