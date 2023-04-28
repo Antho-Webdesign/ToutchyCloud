@@ -26,12 +26,16 @@
                     <td class="border border-1 fs-5 p-5">{{ i.passwords }}</td>
                     <td class="border border-1 fs-5 p-5">
                         <a href="#">
-                            <button type="button" class="btn btn-info" style="margin: auto; justify-content: center; display: flex;">Modifier</button>
+                            <button type="button" class="btn btn-info"
+                                    style="margin: auto; justify-content: center; display: flex;">Modifier
+                            </button>
                         </a>
                     </td>
                     <td class="border border-1 fs-5 p-5">
-                        <a href="{% url 'deleterecord' i.id  %}">
-                            <button type="button" class="btn btn-danger" style="margin: auto; justify-content: center; display: flex;">Supprimer</button>
+                        <a href="{% url 'deleterecord' i.id %}">
+                            <button type="button" class="btn btn-danger"
+                                    style="margin: auto; justify-content: center; display: flex;">Supprimer
+                            </button>
                         </a>
                     </td>
                 </tr>

@@ -10,7 +10,7 @@
     <div class="home-box mt-4">
         {% for img in object_list %}
             <div class="img-home-box border border-dark p-3">
-            <h2 class="text-center">{{ img.nom }}</h2>
+                <h2 class="text-center">{{ img.nom }}</h2>
                 <a href="{% url 'img-details-view' img.slug %}">
                     <img class="photos-home" src="{{ img.images.url }}" alt="">
                 </a>
