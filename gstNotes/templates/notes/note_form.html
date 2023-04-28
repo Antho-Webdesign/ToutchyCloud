@@ -45,7 +45,13 @@
             {% endif %}
         </div>
 
-        <button type="submit" class="btn btn-primary">{% if note.id %}Modifier{% else %}Créer{% endif %}</button>
+        <button type="submit" class="btn btn-primary">
+            {% if note.id %}
+                Modifier
+            {% else %}
+                Créer
+            {% endif %}
+        </button>
     </form>
 
 
