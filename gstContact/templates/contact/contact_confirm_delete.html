@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Supprimer le contact "{{ contact.nom }}"</h1>
+  <p>Êtes-vous sûr de vouloir supprimer ce contact?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmer la suppression</button>
+    <a href="{% url 'contact_list' %}">Annuler</a>
+  </form>
+{% endblock %}
