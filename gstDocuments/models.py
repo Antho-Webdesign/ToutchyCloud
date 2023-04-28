@@ -55,4 +55,3 @@ class Documents(models.Model):
         ordering = ['-nom']
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
-

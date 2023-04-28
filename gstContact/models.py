@@ -28,4 +28,3 @@ class Contact(models.Model):
         ordering = ['-nom']
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
-
