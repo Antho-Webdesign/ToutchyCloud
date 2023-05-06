@@ -26,16 +26,20 @@
                 <td>{{ note.title }}</td>
                 <td>{{ note.category }}</td>
                 <td>{{ note.created_at }}</td>
+
                 <td style="display: flex; justify-content: space-around;">
                     <a href="{% url 'note_detail' slug=note.slug %}" class="btn btn-primary">Détails</a>
-                    <a href="{% url 'note_update'  slug=note.slug %}" class="btn btn-secondary">Modifier</a>
+                    <a href="{% url 'note_update'  slug=note.slug %}" class="btn btn-warning">Modifier</a>
                     <a href="{% url 'note_delete' slug=note.slug %}" class="btn btn-danger">Supprimer</a>
                 </td>
+
             </tr>
+
         {% empty %}
             <tr>
                 <td colspan="5">Aucun contact à afficher.</td>
             </tr>
+
         {% endfor %}
         </tbody>
     </table>

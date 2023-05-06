@@ -10,8 +10,15 @@
         <div class="col-md-6">
             <h1>{{ note.title }} {{ note.created_at }}</h1>
             <ul class="list-unstyled">
-                <li><strong>Category :</strong> {{ note.category }}</li>
-                <li><strong>Note :</strong> {{ note.content }}</li>
+                <li>
+                    <strong>Category :</strong>
+                    {{ note.category }}
+                </li>
+
+                <li>
+                    <strong>Note :</strong>
+                    {{ note.content }}
+                </li>
             </ul>
             <a href="{% url 'note_update' note.slug %}" class="btn btn-primary">Modifier</a>
             <a href="{% url 'note_delete' note.slug %}" class="btn btn-danger">Supprimer</a>

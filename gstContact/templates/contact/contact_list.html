@@ -10,7 +10,9 @@
 
     </style>
 
-    <h1 class="text-center mt-5 mb-5">Liste des contacts</h1>
+    <h1 class="text-center mt-5 mb-5">
+        Liste des contacts
+    </h1>
 
     <table class="table text-center">
         <thead>
@@ -29,9 +31,9 @@
                 <td>{{ contact.prenom }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.telephone }}</td>
-                <td>
+                <td style="display: flex; justify-content: space-around;">
                     <a href="{% url 'contact_detail' slug=contact.slug %}" class="btn btn-primary">Détails</a>
-                    <a href="{% url 'contact_update' slug=contact.slug %}" class="btn btn-secondary">Modifier</a>
+                    <a href="{% url 'contact_update' slug=contact.slug %}" class="btn btn-warning">Modifier</a>
                     <a href="{% url 'contact_delete' slug=contact.slug %}" class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
