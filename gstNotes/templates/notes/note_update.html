@@ -2,9 +2,9 @@
 
 {% block content %}
   <h1>Modifier la note "{{ note.title }}"</h1>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; justify-content: center; margin: auto;">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Enregistrer</button>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
   </form>
 {% endblock %}

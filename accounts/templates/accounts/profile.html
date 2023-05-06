@@ -1,7 +1,8 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} <!-- Étend le modèle de base.html -->
 
-{% block content %}
+{% load static %} <!-- Charge les fichiers statiques -->
+
+{% block content %} <!-- Début du bloc de contenu -->
 
     <h1 class="title-home">
         Profil
@@ -14,19 +15,22 @@
                      style="background-image: url(https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80)">
                 </div>
 
+                <!-- Affiche l'image de profil de l'utilisateur -->
                 <img class="card-avatar" src="{{ user.profile.image_profile.url }}"
                      alt="{{ profile.image_profile.name }}">
 
-
+                <!-- Affiche le nom de l'utilisateur -->
                 <h1 class="card-fullname">{{ profile.user.username }}</h1>
 
+                <!-- Affiche si l'utilisateur est actif -->
                 {% if profile.user.is_active %}
                     <p class="text-success">Active</p>
                 {% else %}
                     <p class="text-warning">Not active</p>
-
                 {% endif %}
             </div>
+
+            <!-- Affiche la table des infos de l'utilisateur -->
             <div class="card-main text-dark">
                 <div class="card-section is-active" id="about">
 
@@ -52,6 +56,7 @@
 
                 </div>
 
+                <!-- Affiche le menu de nav en bas -->
                 <div class="card-section" id="experience">
                     <div class="card-content">
                         <div class="card-subtitle">Modifier mon image</div>
@@ -64,11 +69,13 @@
                                    class="form-control mb-5 input-updt-img-profile"/>
                             <input type="submit" value="Valider" class="btn updt-profile">
                         </form>
-
                     </div>
                 </div>
+
+                <!-- Menu infos/image/contact -->
                 <div class="card-section" id="contact">
                     <div class="card-content">
+                        <!-- Menu informations generale -->
                         <div class="card-subtitle">Informations</div>
                         <div class="card-contact-wrapper">
                             <div class="card-contact">
@@ -101,6 +108,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Affiche des boutons pour basculer entre les différentes sections de la carte -->
                 <div class="card-buttons">
                     <button data-section="#about" class="is-active">Informations générales</button>
                     <button data-section="#experience">Changer photo de profile</button>
@@ -110,14 +119,13 @@
         </div>
     </div>
 
+    <!-- Affiche des boutons pour modifier le profil et revenir à la page d'accueil -->
     <div class="btn-box mb-5">
         <button type="submit" class="btn btn-primary mt-3">Modifier</button>
         <a class="btn btn-warning mt-3" href="{% url 'home' %}">Retour</a>
     </div>
 
-
-
-
+    <!-- Ajoute un script JavaScript pour gérer les événements de clic sur les boutons et afficher les sections correspondantes -->
     <script>
         const buttons = document.querySelectorAll(".card-buttons button");
         const sections = document.querySelectorAll(".card-section");
@@ -143,106 +151,3 @@
     </script>
 {% endblock %}
 
-{% comment %}
-<div class="container-profile mt-5 mb-5">
-    {% if user.is_authenticated %}
-    <div class="row no-gutters">
-        <img class="img-profile" src="{{ profile.image.url }}">
-
-        <div class="d-flex flex-column">
-            <div class="d-flex flex-row justify-content-between align-items-center p-5 bg-dark text-white">
-                <h3 class="display-5">{{ user.username }}</h3>
-
-                <a class="nav-link" href="{% url 'cart' %}">
-                    <i href="{% url 'cart' %}" class="fa fa-2x fa-cart-plus"></i>
-                    <!-- <img src="media/images/panier.png" alt="" style="width:25%"> -->
-                    {{ user.cart.orders.count }}
-                </a>
-                <a href="{% url 'profile' %}">
-                    <i class="fa fa-2x fa-user"></i>
-                </a>
-                <a href="#" data-popup="Ajouter un compte paypal">
-                    <i class="fa fa-2x fa-paypal"></i>
-                </a>
-                <a href="#" data-popup="Ajouter une carte bancaire">
-                    <i class="fa fa-2x fa-cc-visa"></i>
-                </a>
-
-            </div>
-
-            <div class="p-3 bg-black text-white">
-                <h6>Inscrit depuis le : {{ user.date_joined|date:"d/m/Y" }}</h6>
-            </div>
-
-            <div class="d-flex flex-row text-white box-prfl mt-5">
-                <div class="p-4 bg-primary text-center skill-block">
-                    <h6><i class="fas fa-2x fa-address-book"></i></h6>
-                    <br>
-                    <h4>{{ profile.address }}</h4>
-                </div>
-                <div class="p-3 bg-success text-center skill-block">
-                    <h6><i class="fas fa-2x fa-city"></i></h6>
-                    <br>
-                    <h4>{{ profile.city }}</h4>
-                </div>
-                <div class="p-3 bg-warning text-center skill-block">
-                    <h6><i class="fas fa-2x fa-phone"></i></h6>
-                    <br>
-                    <h4>{{ profile.phone }}</h4>
-                </div>
-                <div class="p-3 bg-danger text-center skill-block">
-                    <h6><i class="fas fa-2x fa-globe"></i></h6>
-                    <br>
-                    <h4>{{ profile.country }}</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    <div class="btn-box">
-        <a href="{% url 'edit-profile' %}">
-            <button class="btn updt-profile btn-info fs-5">Modifier mon profile</button>
-        </a>
-    </div>
-</div>
-
-<div class="title text-center mb-5">
-    <h1>Mes infos</h1>
-</div>
-{% if user.is_authenticated %}
-<div class="profile text-center">
-    <img src="{{ profile.image.url }}" alt="img" style="width: 25%; border-radius:100px;" class="mb-4 ">
-    <div class="mb-4">
-        <h2>Username: {{ user.username }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>Email: {{ user.email }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>First Name: {{ user.first_name }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>Last Name: {{ user.last_name }}</h2>
-    </div>
-    <div class="mb-2">
-        <h2>Address: {{ user.profile.address }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>Phone Number: {{ user.profile.phone_number }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>City: {{ user.profile.city }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>Zip Code: {{ user.profile.zip_code }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2>Country: {{ user.profile.country }}</h2>
-    </div>
-    <div class="mb-4">
-        <h2 class="mb-2">State: {{ user.profile.state }}</h2>
-    </div>
-</div>
-{% endif %}
-<a href="{% url 'edit-profile' %}" class="btn btn-primary">Update</a>
-{% endcomment %}

@@ -11,8 +11,6 @@ User = get_user_model()
 
 # Create your views here.
 def signup(request):
-    # form = UserCreationForm(request.POST)
-    # context = {'form': form}
     user = request.user
     if request.method == "POST":
         # traiter le formulaire

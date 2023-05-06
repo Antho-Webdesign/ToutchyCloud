@@ -11,7 +11,7 @@
         une note
     </h1>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; justify-content: center; margin: auto;">
         {% csrf_token %}
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
