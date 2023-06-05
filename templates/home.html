@@ -2,19 +2,24 @@
 {% load static %}
 
 {% block content %}
+
     <section class="home-box justify-content-center mt-2 mb-2">
-    <form method="post">
+    <form method="GET">
         {% csrf_token %}
+        <label for="search"></label>
         <input class="form" name="search" id="search" value="rechercher">
-        <button class="btn btn-success" type="submit" name="search">Rechercher</button>
+        <button class="btn btn-success" type="submit" name="search">
+            Rechercher
+        </button>
     </form>
     </section>
+
     <div class="home-box mt-4">
 
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'gallery-view' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/photos-app.png' %}" alt="">
-                <p class="title-app text-center">photos</p>
+                <p class="title-app text-center">Mes Photos</p>
             </a>
         </div>
 
@@ -22,14 +27,14 @@
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'gallery-doc-view' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/doc-app.png' %}" alt="">
-                <p class="title-app text-center">Documents</p>
+                <p class="title-app text-center">Mes Documents</p>
             </a>
         </div>
 
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'contact_list' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/contact-app.png' %}" alt="">
-                <p class="title-app text-center">Contact</p>
+                <p class="title-app text-center">Mes Contact</p>
             </a>
         </div>
 
@@ -43,28 +48,28 @@
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'note_list' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/notes-app.png' %}" alt="notes">
-                <p class="title-app text-center">Notes</p>
+                <p class="title-app text-center">Mes Notes</p>
             </a>
         </div>
 
         <div class="img-home-box">
             <a class="nav-link" href="#">
                 <img class="photos-home" src="{% static 'touchycloud/home/tasks-app.png' %}" alt="tasks">
-                <p class="title-app text-center">Mes taches</p>
+                <p class="title-app text-center">Mes Taches</p>
             </a>
         </div>
 
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'home_passwords' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/passwords-app.png' %}" alt="password">
-                <p class="title-app text-center">Passwords</p>
+                <p class="title-app text-center">Mes Passwords</p>
             </a>
         </div>
 
         <div class="img-home-box">
             <a class="nav-link" href="{% url 'profile' %}">
                 <img class="photos-home" src="{% static 'touchycloud/home/settings-app.png' %}" alt="settings">
-                <p class="title-app text-center">Settings</p>
+                <p class="title-app text-center">Mes Infos</p>
             </a>
         </div>
 
