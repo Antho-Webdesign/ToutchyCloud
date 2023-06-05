@@ -1,3 +1,5 @@
 from django.contrib import admin
+from gstRappels.models import Rappel
 
-# Register your models here.
+
+admin.site.register(Rappel)
