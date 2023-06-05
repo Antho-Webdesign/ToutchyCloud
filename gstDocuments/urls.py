@@ -11,3 +11,4 @@ urlpatterns = [
     path('documents/<int:pk>/delete/', DocumentDeleteView.as_view(), name='document_delete'),
     # path('pdf_to_image/', pdf_to_image, name='pdf_to_image'),
 ]
+
