@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Home</h1>
+    <p>Welcome to the home page</p>
+
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                {% for tache in taches %}
+                    <h2>{{ tache.title }}</h2>
+                    <p>details:
+                        <a href="{% url "tache_details" tache.slug %}">
+                            {{ tache.slug }}
+                        </a>
+                    </p>
+                    <p>{{ tache.date_created }}</p>
+                    <p>{{ tache.date_updated }}</p>
+
+                {% empty %}
+                    <p>Il n'y a pas de tâches</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

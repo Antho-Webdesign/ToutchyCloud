@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page detail tache -->
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ tache.title }}</h5>
+                <p class="card-text">{{ tache.author }}</p>
+                <p class="card-text">{{ tache.date_created }}</p>
+
+                <p class="card-text">{{ tache.content }}</p>
+
+                <a href="{% url 'liste_taches' %}" class="btn btn-primary">Retour</a>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Page detail tache -->
+{% endblock content %}
