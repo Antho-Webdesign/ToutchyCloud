@@ -35,6 +35,7 @@
         <option value="$MODULE_DIR$/gstContact/templates" />
         <option value="$MODULE_DIR$/gstNotes/templates" />
         <option value="$MODULE_DIR$/gstTasks/templates" />
+        <option value="$MODULE_DIR$/gstRappels/templates" />
       </list>
     </option>
   </component>

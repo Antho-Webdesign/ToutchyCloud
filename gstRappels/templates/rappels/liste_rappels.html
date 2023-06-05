@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Rappels</h1>
+    <p>Vous avez {{ nb_rappels }} rappels</p>
+    <ul>
+        {% for rappel in rappels %}
+            <li>{{ rappel.titre }}</li>
+            <li>{{ rappel.date_creation }}</li>
+            <li>{{ rappel.description }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

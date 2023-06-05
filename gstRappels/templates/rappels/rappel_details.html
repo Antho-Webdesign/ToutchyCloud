@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page detail tache -->
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ rappel.titre }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ rappel.date_creation }}</h6>
+                <p class="card-text">{{ rappel.description }}</p>
+
+                <a href="{% url 'liste_rappels' %}" class="card-link">Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,3 +3,4 @@ from gstRappels.models import Rappel
 
 
 admin.site.register(Rappel)
+
