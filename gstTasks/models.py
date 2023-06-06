@@ -29,8 +29,10 @@ class Tasks(models.Model):
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    date_butoir = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
     category = models.ForeignKey(CategoryTasks, on_delete=models.CASCADE)
     author = models.ForeignKey('accounts.Customer', on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
