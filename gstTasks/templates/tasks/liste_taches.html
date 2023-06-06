@@ -8,7 +8,15 @@
     <div class="container">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
+
+                <div class="notif-body" style="display: flex; justify-content: end; margin: auto;">
+                    <p style="background-color: red; border-radius: 20px; color: #fff; text-align: center; width: 10%;">
+                        {{ taches_count }}
+                    </p>
+                </div>
+
                 {% for tache in taches %}
+
                     <h2>{{ tache.title }}</h2>
                     <p>details:
                         <a href="{% url "tache_details" tache.slug %}">
