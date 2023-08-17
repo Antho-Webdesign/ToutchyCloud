@@ -9,7 +9,7 @@ class DocumentForm(forms.ModelForm):
         widgets = {
             'nom': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'type': forms.Select(attrs={'class': 'form-select'}),
+            # 'type': forms.Select(attrs={'class': 'form-select'}),
             'mots_cles': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'tag': forms.Select(attrs={'class': 'form-select'}),
             'file_upload': forms.FileInput(attrs={'class': 'form-control'}),

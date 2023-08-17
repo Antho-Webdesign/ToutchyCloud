@@ -18,4 +18,3 @@ def rappel_details(request, slug):
         'rappel': rappel,
     }
     return render(request, 'rappels/rappel_details.html', context)
-
