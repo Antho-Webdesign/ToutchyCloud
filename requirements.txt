@@ -2,7 +2,7 @@ asgiref==3.7.2
 certifi==2023.7.22
 charset-normalizer==3.2.0
 click==8.1.7
-Django==4.2.4
+Django==4.2.5
 django-sass-compiler==1.1.0
 fontawesome-free==5.15.4
 fontawesomefree==6.4.2
@@ -15,5 +15,5 @@ svglib==1.5.1
 termcolor==2.3.0
 tinycss2==1.2.1
 traits==6.4.2
-uritools==4.0.1
+uritools==4.0.2
 urllib3==2.0.4
